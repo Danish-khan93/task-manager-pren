@@ -1,9 +1,12 @@
-import { CustomButton, CustomCheckBox, CustomInput } from "./component";
+// import { CustomButton, CustomCheckBox, CustomInput } from "./component";
+
+import Signup from "./feature/auth/pages/Signup";
 
 const App = () => {
   return (
     <div>
-      <CustomButton label="testing button" type="button" variant="text" />
+      <Signup />
+      {/* <CustomButton label="testing button" type="button" variant="text" />
       <CustomButton icon={"plus"} type="button" variant="icon" />
       <CustomButton
         icon={"plus"}
@@ -20,7 +23,7 @@ const App = () => {
         maxLength={10}
         minLength={5}
       />
-      <CustomCheckBox label={"tesing"} name={"test"}/>
+      <CustomCheckBox label={"tesing"} name={"test"}/> */}
     </div>
   );
 };

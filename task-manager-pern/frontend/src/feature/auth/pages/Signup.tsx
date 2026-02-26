@@ -1,8 +1,13 @@
+import AuthForm from "../authComponent/AuthForm";
+import AuthLayout from "../authComponent/AuthLayout";
 
 const Signup = () => {
+  const params = "signup"
   return (
-    <div>Signup</div>
-  )
-}
+    <AuthLayout>
+      <AuthForm type={params} />
+    </AuthLayout>
+  );
+};
 
-export default Signup
+export default Signup;

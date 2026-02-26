@@ -25,9 +25,9 @@ const CustomButton: FC<Props> = (props) => {
 
   const styling = {
     icon: "w-[40px] h-[40px] p-2 rounded-full bg-white border-4 border-red-300 flex justify-center items-center",
-    text: "max-w-42 py-1 px-2 rounded-md bg-red-300 whitespace-nowrap",
+    text: "max-w-42 w-full py-1 px-2 rounded-md bg-red-300 whitespace-nowrap",
     iconText:
-      "py-1 px-2 rounded-md flex justify-center items-center gap-3 bg-red-300 whitespace-nowrap",
+      "max-w-42 w-full py-1 px-2 rounded-md flex justify-center items-center gap-3 bg-red-300 whitespace-nowrap",
   };
 
   return (

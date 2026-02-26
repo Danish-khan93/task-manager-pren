@@ -69,11 +69,11 @@ const CustomInput: FC<Props> = (props) => {
         {type === "password" && (
           <span>
             {showPass ? (
-              <button onClick={() => setShowPass(!showPass)}>
+              <button type="button" onClick={() => setShowPass(!showPass)}>
                 <FaEye />
               </button>
             ) : (
-              <button onClick={() => setShowPass(!showPass)}>
+              <button type="button" onClick={() => setShowPass(!showPass)}>
                 <FaEyeSlash />
               </button>
             )}

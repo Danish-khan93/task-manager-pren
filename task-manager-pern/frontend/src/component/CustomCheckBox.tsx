@@ -1,9 +1,29 @@
-import React from 'react'
+import { useState, type FC } from "react";
 
-const CustomCheckBox = () => {
+type Props = {
+  label: string;
+  name: string;
+  value?: string;
+};
+
+const CustomCheckBox: FC<Props> = (props) => {
+  const [checked, setChecked] = useState<boolean>(false);
+  const { label, name } = props;
   return (
-    <div>CustomCheckBox</div>
-  )
-}
+    <label className="flex gap-2 items-center ">
+      <input
+        className="w-[15px] h-[15px] accent-red-900 m-1"
+        type="checkbox"
+        name={name}
+        checked={checked}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+          console.log(e?.target.checked);
+          setChecked(e?.target?.checked);
+        }}
+      />
+      <p>{label}</p>
+    </label>
+  );
+};
 
-export default CustomCheckBox
+export default CustomCheckBox;

@@ -1,4 +1,4 @@
-import { CustomButton } from "./component";
+import { CustomButton, CustomCheckBox, CustomInput } from "./component";
 
 const App = () => {
   return (
@@ -11,8 +11,16 @@ const App = () => {
         type="button"
         variant="iconText"
       />
-      <CustomButton icon={"edit"} type="button" variant="icon" />
-      <CustomButton icon={"delete"} type="button" variant="icon" />
+
+      <CustomInput label={"test"} name={"test"} type="number" max={4} />
+      <CustomInput
+        label={"test"}
+        name={"test"}
+        type="password"
+        maxLength={10}
+        minLength={5}
+      />
+      <CustomCheckBox label={"tesing"} name={"test"}/>
     </div>
   );
 };

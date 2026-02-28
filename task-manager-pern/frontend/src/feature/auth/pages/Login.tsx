@@ -1,5 +1,5 @@
 import AuthForm from "../authComponent/AuthForm";
-import AuthLayout from "../authComponent/AuthLayout";
+import AuthLayout from "../../../layout/authLayout/AuthLayout";
 
 const Login = () => {
   const params = "login";

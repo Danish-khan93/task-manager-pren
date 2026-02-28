@@ -1,4 +1,4 @@
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import type { FC } from "react";
 import { CustomButton, CustomInput } from "../../../component";
 
@@ -9,11 +9,13 @@ type Props = {
 const AuthForm: FC<Props> = (props) => {
   const { type } = props;
   return (
-    <div>
-      <div>image brand logo</div>
-      <div>google login and other plateform login</div>
+    <div className="bg-white/95 backdrop-blur-sm shadow-lg rounded-lg p-9 w-[350px]">
+      <div className="flex justify-center my-2">image brand logo</div>
+      <div className="flex justify-center my-2">
+        <CustomButton type="button" icon={"google"} label="Google" variant="iconText"/>
+      </div>
       <div>
-        <form>
+        <form className="flex flex-col gap-2">
           {type === "signup" && (
             <CustomInput
               type="text"
@@ -42,12 +44,16 @@ const AuthForm: FC<Props> = (props) => {
           />
         </form>
       </div>
-      <div>{/* <Link to="#">Forgot Password?</Link> */}</div>
+      <div className="flex justify-center"><Link className="text-primary" to="#">Forgot Password?</Link></div>
       <div className="flex justify-center">
         {type === "signup" ? (
-          <p>Already have an account? Sign in</p>
+          <p>
+            Already have an account? <Link className="text-blue-900 font-medium" to={"/"}>Sign in</Link>
+          </p>
         ) : (
-          <p>Don't have an account? Sign up </p>
+          <p>
+            Don't have an account? <Link className="text-blue-900 font-medium" to={"/signup"}>Sign up</Link>{" "}
+          </p>
         )}
       </div>
     </div>

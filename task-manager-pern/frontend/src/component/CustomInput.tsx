@@ -38,7 +38,7 @@ const CustomInput: FC<Props> = (props) => {
     <div className="flex flex-col items-start m-1">
       <label>{label}</label>
       <span
-        className={`flex items-center justify-between w-full border-2 border-red-900 p-1 rounded-md hover:border-blue-500 ${activeInput ? "border-yellow-500" : ""}`}
+        className={`flex items-center justify-between w-full border-2 border-primary p-1 rounded-md ${activeInput ? "shadow-md" : ""}`}
       >
         <input
           className="outline-none w-full"
@@ -69,11 +69,11 @@ const CustomInput: FC<Props> = (props) => {
         {type === "password" && (
           <span>
             {showPass ? (
-              <button onClick={() => setShowPass(!showPass)}>
+              <button type="button" onClick={() => setShowPass(!showPass)}>
                 <FaEye />
               </button>
             ) : (
-              <button onClick={() => setShowPass(!showPass)}>
+              <button type="button" onClick={() => setShowPass(!showPass)}>
                 <FaEyeSlash />
               </button>
             )}

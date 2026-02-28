@@ -1,5 +1,5 @@
 import type { FC } from "react";
-import authBgImage from "../../../assets/saas-app-auth-bg.jpg";
+import authBgImage from "../../assets/saas-app-auth-bg.jpg";
 type Props = {
   children: React.ReactNode;
 };

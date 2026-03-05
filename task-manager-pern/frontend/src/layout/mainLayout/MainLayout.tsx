@@ -9,17 +9,19 @@ type Props = {
 const MainLayout: FC<Props> = (props) => {
   const { children } = props;
   return (
-    <div>
-      <div>
-        <Topbar />
+    <div className="flex">
+      <div className="bg-green-400 h-screen">
+        <Sidebar />
       </div>
-      <div>
-        <div>
-          <Sidebar />
+      <div className="w-full">
+        <div className="h-15">
+          <Topbar />
         </div>
         <div>{children}</div>
       </div>
     </div>
+
+    
   );
 };
 

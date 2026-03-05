@@ -2,7 +2,7 @@
 
 const Topbar = () => {
   return (
-    <div>Topbar</div>
+    <div className="w-full h-full bg-red-400">Topbar</div>
   )
 }
 

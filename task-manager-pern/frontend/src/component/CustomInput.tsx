@@ -10,12 +10,17 @@ type Props = {
   label: string;
   name: string;
   type?: "number" | "password" | "text" | "email";
-  max?: number;
-  min?: number;
+  max?: number | string;
+  min?: number | string;
   maxLength?: number;
   minLength?: number;
   placeHolder?: string;
   autoComplete?: "off" | "on";
+  value?: string;
+  onChange?: React.ChangeEventHandler<HTMLInputElement>;
+  onBlur?: React.ChangeEventHandler<HTMLInputElement>;
+  ref?: React.Ref<HTMLInputElement>;
+  pattren?: string;
 };
 
 const CustomInput: FC<Props> = (props) => {
@@ -29,18 +34,25 @@ const CustomInput: FC<Props> = (props) => {
     maxLength,
     placeHolder,
     autoComplete = "off",
+    value,
+    onChange,
+    onBlur,
+    pattren,
+    ref,
   } = props;
-  const [value, setValue] = useState<string>("");
+
   const [showPass, setShowPass] = useState<boolean>(false);
   const [activeInput, setActiveInput] = useState<boolean>(false);
 
   return (
     <div className="flex flex-col items-start m-1">
-      <label>{label}</label>
+      <label htmlFor={name}>{label}</label>
       <span
         className={`flex items-center justify-between w-full border-2 border-primary p-1 rounded-md ${activeInput ? "shadow-md" : ""}`}
       >
         <input
+          pattern={pattren}
+          id={name}
           className="outline-none w-full"
           autoComplete={autoComplete}
           placeholder={placeHolder}
@@ -52,11 +64,10 @@ const CustomInput: FC<Props> = (props) => {
           value={value}
           name={name}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-            const val = e?.target?.value;
-            setValue(val);
+            onChange?.(e);
           }}
-          onBlur={() => {
-            console.log("on blur run");
+          onBlur={(e) => {
+            onBlur?.(e);
             setActiveInput(false);
           }}
           onClick={() => {
@@ -65,6 +76,7 @@ const CustomInput: FC<Props> = (props) => {
           onFocus={() => {
             setActiveInput(true);
           }}
+          ref={ref}
         />
         {type === "password" && (
           <span>

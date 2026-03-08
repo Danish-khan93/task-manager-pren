@@ -1,9 +1,10 @@
 import type { FC } from "react";
 import Sidebar from "./mainLayoutComponent/Sidebar";
 import Topbar from "./mainLayoutComponent/Topbar";
+import { Outlet } from "react-router-dom";
 
 type Props = {
-  children: React.ReactNode;
+  children?: React.ReactNode;
 };
 
 const MainLayout: FC<Props> = (props) => {
@@ -18,6 +19,7 @@ const MainLayout: FC<Props> = (props) => {
           <Topbar />
         </div>
         <div>{children}</div>
+        <Outlet/>
       </div>
     </div>
 

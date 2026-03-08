@@ -11,7 +11,7 @@ const MainLayout: FC<Props> = (props) => {
   const { children } = props;
   return (
     <div className="flex">
-      <div className="bg-green-400 h-screen">
+      <div className="h-screen">
         <Sidebar />
       </div>
       <div className="w-full">

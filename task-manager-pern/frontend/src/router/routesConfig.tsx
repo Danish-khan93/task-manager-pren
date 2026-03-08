@@ -2,8 +2,10 @@ import Login from "../feature/auth/pages/Login";
 import Signup from "../feature/auth/pages/Signup";
 import { createBrowserRouter } from "react-router-dom";
 import Dashboard from "../feature/dashboard/pages/Dashboard";
-import WhiteLabel from "../feature/whiteLabeling/pages/WhiteLabel";
+import WhiteLabel from "../feature/settings/whiteLabeling/pages/WhiteLabel";
 import MainLayout from "../layout/mainLayout/MainLayout";
+import WorkSpace from "../feature/workspace/pages/WorkSpace";
+import Settings from "../feature/settings/pages/Settings";
 
 export const routes = createBrowserRouter([
   {
@@ -20,8 +22,16 @@ export const routes = createBrowserRouter([
     element: <MainLayout />,
     children: [
       {
-        path: "/dashbord",
+        path: "/dashboard",
         element: <Dashboard />,
+      },
+      {
+        path: "/work-space",
+        element: <WorkSpace />,
+      },
+      {
+        path: "/settings",
+        element: <Settings />,
       },
       {
         path: "/white-label",

@@ -11,19 +11,20 @@ const MainLayout: FC<Props> = (props) => {
   const { children } = props;
   return (
     <div className="flex">
-      <div className="h-screen">
+      <div className="h-screen sticky top-0">
         <Sidebar />
       </div>
       <div className="w-full">
-        <div className="h-15">
+        <div className="h-15 sticky top-0">
           <Topbar />
         </div>
-        <div>{children}</div>
-        <Outlet/>
+        <div className="mx-2">
+          {children}
+
+          <Outlet />
+        </div>
       </div>
     </div>
-
-    
   );
 };
 

@@ -2,6 +2,7 @@
 // other things to add
 // onclick onblur and form use react hook form or formik
 // validation max min lngth type icon if password
+// error show remain 
 
 import { useState, type FC } from "react";
 import { FaEye } from "react-icons/fa";

@@ -6,7 +6,7 @@ import WhiteLabel from "../feature/settings/whiteLabeling/pages/WhiteLabel";
 import MainLayout from "../layout/mainLayout/MainLayout";
 import WorkSpace from "../feature/workspace/pages/WorkSpace";
 import Settings from "../feature/settings/pages/Settings";
-
+import Board from "../feature/workspace/pages/Board";
 export const routes = createBrowserRouter([
   {
     path: "/",
@@ -28,6 +28,10 @@ export const routes = createBrowserRouter([
       {
         path: "/work-space",
         element: <WorkSpace />,
+      },
+      {
+        path: "/work-space/:id",
+        element: <Board />,
       },
       {
         path: "/settings",

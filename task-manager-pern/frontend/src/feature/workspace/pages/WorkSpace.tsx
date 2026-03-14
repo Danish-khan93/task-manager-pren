@@ -1,4 +1,4 @@
-import { CustomButton, CustomText } from "../../../component";
+import { CustomModal, CustomText } from "../../../component";
 import BoardCards from "../component/BoardCards";
 
 const boards = [
@@ -18,16 +18,26 @@ const WorkSpace = () => {
       <section>
         <CustomText variant="h3">Create Board</CustomText>
         <div className="w-30">
-          <CustomButton
-            label="Create Board"
+          <CustomModal
+            label={"Create Board"}
             icon={"plus"}
             type="button"
             variant="iconText"
-          />
+          >
+            danish
+          </CustomModal>
         </div>
       </section>
       <section>
         <CustomText variant="h3">Recent Board</CustomText>
+        <div className="mx-1 grid grid-cols-6 gap-4 my-4">
+          {boards?.map((value) => {
+            return <BoardCards key={value?.id} data={value} />;
+          })}
+        </div>
+      </section>
+      <section>
+        <CustomText variant="h3">Guest Workspaces</CustomText>
         <div className="mx-1 grid grid-cols-6 gap-4 my-4">
           {boards?.map((value) => {
             return <BoardCards key={value?.id} data={value} />;

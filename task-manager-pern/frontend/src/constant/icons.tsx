@@ -7,14 +7,16 @@ import { FaGoogle } from "react-icons/fa";
 import { IoSettingsOutline } from "react-icons/io5";
 import { MdOutlineDashboard } from "react-icons/md";
 import { MdWorkspacesOutline } from "react-icons/md";
+import { MdOutlineCancel } from "react-icons/md";
 export const iconMap = {
-  plus: <FaPlus />,
-  edit: <MdEdit />,
-  delete: <MdDelete />,
-  hidePass: <FaEye />,
-  showPass: <FaEyeSlash />,
-  google: <FaGoogle />,
-  setting: <IoSettingsOutline />,
-  dashboard: <MdOutlineDashboard />,
-  workSpace: <MdWorkspacesOutline />,
+  plus: <FaPlus  />,
+  edit: <MdEdit  />,
+  delete: <MdDelete  />,
+  hidePass: <FaEye  />,
+  showPass: <FaEyeSlash  />,
+  google: <FaGoogle  />,
+  setting: <IoSettingsOutline  />,
+  dashboard: <MdOutlineDashboard  />,
+  workSpace: <MdWorkspacesOutline  />,
+  cancel: <MdOutlineCancel  />,
 };

@@ -7,6 +7,7 @@ import MainLayout from "../layout/mainLayout/MainLayout";
 import WorkSpace from "../feature/workspace/pages/WorkSpace";
 import Settings from "../feature/settings/pages/Settings";
 import Board from "../feature/workspace/pages/Board";
+import CreateWorkSpace from "../feature/auth/pages/CreateWorkSpace";
 export const routes = createBrowserRouter([
   {
     path: "/",
@@ -16,6 +17,11 @@ export const routes = createBrowserRouter([
     path: "/signup",
     element: <Signup />,
   },
+  {
+    path: "/work-space",
+    element: <CreateWorkSpace />,
+  },
+
 
   {
     path: "/",

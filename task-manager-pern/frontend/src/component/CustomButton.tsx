@@ -1,7 +1,7 @@
 import type { FC } from "react";
 import { iconMap } from "../constant/icons";
 
-type Props = {
+ export type Props = {
   type: "button" | "submit";
   variant: "icon" | "text" | "iconText";
   label?: string;
@@ -21,7 +21,7 @@ const CustomButton: FC<Props> = (props) => {
   } = props;
 
   const styling = {
-    icon: "w-[40px] h-[40px] p-2 rounded-full flex justify-center items-center",
+    icon: "w-[30px] h-[30px] p-2 rounded-full flex justify-center items-center",
     text: "mim-w-42 w-full py-1 px-2 rounded-md whitespace-nowrap",
     iconText:
       "min-w-42 w-full py-1 px-2 rounded-md flex justify-start items-center gap-5 whitespace-nowrap",

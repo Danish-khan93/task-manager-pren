@@ -12,7 +12,7 @@ const sideBarMenu = [
   },
   {
     icon: "workSpace",
-    title: "Work Space",
+    title: "Boards",
     path:"/work-space"
   },
   {

@@ -1,4 +1,4 @@
-import { useState, type FC, type ReactNode } from "react";
+import { type FC, type ReactNode } from "react";
 import CustomButton from "./CustomButton";
 import { iconMap } from "../constant/icons";
 
@@ -9,16 +9,26 @@ type Props = {
   icon?: keyof typeof iconMap; // allows only iconMap key names (auto-suggest & type-safe)
   handleClick?: () => void;
   children: ReactNode;
+  openModal: boolean;
+  setOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 const CustomModal: FC<Props> = (props) => {
-  const { type = "button", label, variant, children, icon } = props;
-
-  const [openModal, setOpenModal] = useState<boolean>(false);
+  const {
+    type = "button",
+    label,
+    variant,
+    children,
+    icon,
+    openModal,
+    setOpenModal,
+  } = props;
 
   const handleModal = () => {
     setOpenModal(!openModal);
   };
+
+  const closeModal = () => setOpenModal(false);
 
   return (
     <div className="">
@@ -34,11 +44,11 @@ const CustomModal: FC<Props> = (props) => {
         <div
           className="fixed inset-0 backdrop-blur-sm bg-black/30 flex items-center justify-center"
           onClick={() => {
-            setOpenModal(false);
+            closeModal();
           }}
         >
           <div
-            className="p-2 flex flex-col min-w-[400px] h-auto min-h-[300px] z-40 bg-white rounded-lg shadow-lg fixed top-0 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+            className="p-2 flex flex-col h-auto min-w-75 z-40 bg-white rounded-lg shadow-lg fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
             onClick={(e) => {
               e.stopPropagation();
             }} // the upper dive cover full so that why use stopPropagtion if use click inside

@@ -1,5 +1,7 @@
+import { useState } from "react";
 import { CustomModal, CustomText } from "../../../component";
 import BoardCards from "../component/BoardCards";
+import CreateBoardForm from "../component/CreateBoardForm";
 
 const boards = [
   { id: 1, name: "Marketing", color: "#FF5733" },
@@ -13,6 +15,7 @@ const boards = [
 ];
 
 const WorkSpace = () => {
+  const [openModal, setOpenModal] = useState<boolean>(false);
   return (
     <main>
       <section>
@@ -23,8 +26,10 @@ const WorkSpace = () => {
             icon={"plus"}
             type="button"
             variant="iconText"
+            openModal={openModal}
+            setOpenModal={setOpenModal}
           >
-            danish
+            <CreateBoardForm setOpenModal={setOpenModal}/>
           </CustomModal>
         </div>
       </section>

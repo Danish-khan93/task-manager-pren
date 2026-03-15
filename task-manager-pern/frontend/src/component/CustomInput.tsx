@@ -49,7 +49,7 @@ const CustomInput: FC<Props> = (props) => {
     <div className="flex flex-col items-start m-1">
       <label htmlFor={name}>{label}</label>
       <span
-        className={`flex items-center justify-between w-full border-2 border-primary p-1 rounded-md ${activeInput ? "shadow-md" : ""}`}
+        className={`flex items-center justify-between form-input ${activeInput ? "shadow-md" : ""}`}
       >
         <input
           pattern={pattren}

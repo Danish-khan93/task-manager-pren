@@ -28,7 +28,7 @@ const CustomDropDown: FC<Props> = (props) => {
     <div className="flex flex-col items-start m-1">
       <label htmlFor={name}>{label}</label>
       <select
-        className="outline-none w-full border-2 border-primary p-1 rounded-md"
+        className="outline-none form-input"
         name={name}
         {...rest}
         onChange={(e) => {

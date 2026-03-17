@@ -26,7 +26,7 @@ const AuthForm: FC<Props> = (props) => {
   };
 
   return (
-    <div className="bg-white/95 backdrop-blur-sm shadow-lg rounded-lg p-9 w-[350px]">
+    <div className="bg-white/95 backdrop-blur-sm shadow-lg rounded-lg p-9 w-87.5">
       <div className="flex justify-center my-2">image brand logo</div>
       <div className="flex justify-center my-2">
         <CustomButton

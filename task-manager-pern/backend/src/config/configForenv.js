@@ -1,0 +1,11 @@
+import dotenv from "dotenv";
+dotenv.config();
+
+const config = {
+  port: process.env.PORT,
+  dataBaseUrl: process.env.DATABASE_URL,
+  accessTokenSecret: process.env.ACCESS_TOKEN_SECRET,
+  // port: process.env.PORT,
+};
+
+export { config };

@@ -22,7 +22,6 @@ export const routes = createBrowserRouter([
     element: <CreateWorkSpace />,
   },
 
-
   {
     path: "/",
     element: <MainLayout />,
@@ -42,10 +41,12 @@ export const routes = createBrowserRouter([
       {
         path: "/settings",
         element: <Settings />,
-      },
-      {
-        path: "/white-label",
-        element: <WhiteLabel />,
+        children: [
+          {
+            path: "white-label",
+            element: <WhiteLabel />,
+          },
+        ],
       },
     ],
   },

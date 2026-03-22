@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import type { FC } from "react";
-import { CustomButton, CustomInput } from "../../../component";
+import { CustomButton, CustomInput, CustomText } from "../../../component";
 import { useForm } from "react-hook-form";
 import {
   loginFormValues,
@@ -27,7 +27,14 @@ const AuthForm: FC<Props> = (props) => {
 
   return (
     <div className="bg-white/95 backdrop-blur-sm shadow-lg rounded-lg p-9 w-87.5">
-      <div className="flex justify-center my-2">image brand logo</div>
+      <header className="flex justify-center my-2">
+        <CustomText variant="h2">Welcome</CustomText>
+      </header>
+      <header className="flex justify-center my-2">
+        <CustomText variant="p">
+          Step back into your orchestrated workspace.
+        </CustomText>
+      </header>
       <div className="flex justify-center my-2">
         <CustomButton
           type="button"

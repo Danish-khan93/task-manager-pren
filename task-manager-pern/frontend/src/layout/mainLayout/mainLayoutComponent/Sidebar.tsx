@@ -4,6 +4,7 @@
 
 import { useNavigate } from "react-router-dom";
 import { CustomButton } from "../../../component";
+import logo from "../../../assets/logo.png"
 const sideBarMenu = [
   {
     icon: "dashboard",
@@ -25,9 +26,9 @@ const sideBarMenu = [
 const Sidebar = () => {
   const navigate = useNavigate()
   return (
-    <div className="flex items-center flex-col gap-2  w-[200px] h-full shadow-lg bg-primary py-2 px-2">
-      <div className="h-15 w-full flex items-center justify-center bg-red-900">
-        brand icon
+    <div className="flex items-center flex-col gap-2 w-48 h-full shadow-lg bg-primary py-2 px-2">
+      <div className="h-15 w-full flex items-center justify-center">
+        <img src={logo} className="w-full h-full object-contain"/>
       </div>
       <div>
         {

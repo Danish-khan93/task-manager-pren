@@ -1,11 +1,15 @@
+import { CustomText } from "../../../../component";
 import WhiteLableForm from "../component/WhiteLableForm";
 
 const WhiteLabel = () => {
   return (
-    <div>
-      WhiteLabel
+    <main className="my-5">
+      <section>
+        <CustomText variant="h2">White Labeling</CustomText>
+      </section>
+
       <WhiteLableForm />
-    </div>
+    </main>
   );
 };
 

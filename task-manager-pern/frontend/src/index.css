@@ -1,15 +1,49 @@
 @import "tailwindcss";
 
-
-
-@theme {
-  /* --color-primary: oklch(0.72 0.11 178); */
-  /* blue */
+/* @theme {
+  --color-primary: oklch(0.72 0.11 178);
+  blue
   --color-primary: oklch(0.72 0.11 220);
-  --color-text: oklch(0 0 0);
-  /* --color-typography: oklch(0.72 0.11 220); */
+  
+  --color-typography: oklch(0.72 0.11 220);
+} */
+
+:root {
+  /* --color-primary: oklch(0.72 0.11 220);      brand buttons, links */
+  --color-typography: #191C1E; /* text color */
+  --color-bg: #f2f2f7; /* background color */
+  --color-border: #e5e7eb; /* input / card borders */
+  --color-label: #51617e; /* input / label color */
+  --color-fieldBg: #e7e8ea; /* input / field background */
+  --color-buttonBg: #0241c0; /* input / field background */
+  --color-buttonColor: #ffffff; /* input / field background */
+  /* --gradient-primary: linear-gradient(135deg, #0241c0, #3b82f6); */
+
 }
 
-.form-input{
-   @apply w-full h-10 border-2 border-primary p-1 rounded-md;
+.form-input {
+  @apply w-full h-10 p-1 rounded-md; /* Tailwind utilities */
+  border: 2px solid var(--color-border); /* CSS variable for dynamic border */
+  background-color: var(
+    --color-fieldBg
+  ); /* CSS variable for dynamic background */
+  color: var(--color-typography); /* text color */
+}
+
+.form-label {
+  @apply text-base;
+  color: var(--color-label);
+}
+
+
+.heading-text{
+  /* @apply  ; */
+  color: var(--color-typography);
+}
+
+
+.text-button{
+  @apply rounded-full font-medium my-1 cursor-pointer py-1 px-4 whitespace-nowrap;
+  background-color: var(--color-buttonBg);
+  color: var(--color-buttonColor);
 }

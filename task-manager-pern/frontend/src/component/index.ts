@@ -5,6 +5,7 @@ import CustomColorPicker from "./CustomColorPicker";
 import CustomText from "./CustomText";
 import CustomModal from "./CustomModal";
 import CustomDropDown from "./CustomDropDown";
+import CustomTabs from "./CustomTabs";
 export {
   CustomText,
   CustomButton,
@@ -13,4 +14,5 @@ export {
   CustomColorPicker,
   CustomModal,
   CustomDropDown,
+  CustomTabs,
 };

@@ -2,7 +2,7 @@
 // other things to add
 // onclick onblur and form use react hook form or formik
 // validation max min lngth type icon if password
-// error show remain 
+// error show remain
 
 import { useState, type FC } from "react";
 import { FaEye } from "react-icons/fa";
@@ -47,7 +47,9 @@ const CustomInput: FC<Props> = (props) => {
 
   return (
     <div className="flex flex-col items-start m-1">
-      <label htmlFor={name}>{label}</label>
+      <label className="form-label" htmlFor={name}>
+        {label}
+      </label>
       <span
         className={`flex items-center justify-between form-input ${activeInput ? "shadow-md" : ""}`}
       >

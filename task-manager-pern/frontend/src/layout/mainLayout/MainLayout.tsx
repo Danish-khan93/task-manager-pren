@@ -10,7 +10,7 @@ type Props = {
 const MainLayout: FC<Props> = (props) => {
   const { children } = props;
   return (
-    <div className="flex">
+    <div className="flex w-full" style={{ backgroundColor: "var(--color-bg)" }}>
       <div className="h-screen sticky top-0">
         <Sidebar />
       </div>
@@ -18,7 +18,7 @@ const MainLayout: FC<Props> = (props) => {
         <div className="h-15 sticky top-0">
           <Topbar />
         </div>
-        <div className="mx-2">
+        <div className="mx-4">
           {children}
 
           <Outlet />

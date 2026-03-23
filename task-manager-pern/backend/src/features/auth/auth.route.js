@@ -1,5 +1,5 @@
 import express from "express";
-import {registerUser} from "./auth.controller.js"
+import {login, registerUser} from "./auth.controller.js"
 import { checkingReqBody } from "./auth.validation.js";
 const router = express.Router();
 
@@ -7,9 +7,7 @@ const router = express.Router();
 router.post("/registerUser",checkingReqBody, registerUser);
 
 // user Authentication and login 
-router.post("/login",(req, res) => {
-  console.log(req, res);
-});
+router.post("/login",checkingReqBody,login);
 
 
 export default router

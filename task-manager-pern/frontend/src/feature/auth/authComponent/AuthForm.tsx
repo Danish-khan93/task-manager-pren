@@ -36,8 +36,9 @@ const AuthForm: FC<Props> = (props) => {
             data: values,
           }),
         ).unwrap();
+        console.log(res?.message, "res?.data?.message");
 
-        toast.success(res?.data?.message);
+        toast.success(res?.message);
       } catch (error) {
         if (typeof error === "string") {
           toast.error(error);

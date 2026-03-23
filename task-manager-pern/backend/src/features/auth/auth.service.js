@@ -1,13 +1,19 @@
 // this file contain business logic like pass hash
 // jwt access and refresh token
 // create user and if its alreasy created send error or if not create successfully
-import { hash } from "bcryptjs";
+import { compare, hash } from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { config } from "../../config/configForenv.js";
 import { prisma } from "../../prisma.js";
+
 export const passHash = async (password) => {
   const hashing = await hash(password, 8);
   return hashing;
+};
+
+export const comparePass = async (password, hashPassword) => {
+  const isMatch = await compare(password, hashPassword);
+  return isMatch;
 };
 
 export const generateAccessToken = (user) => {
@@ -35,4 +41,13 @@ export const createUser = async (user) => {
     return createUser;
   }
   return false;
+};
+
+export const checkUserAlready = async (email) => {
+  const existingUser = await prisma.user.findUnique({
+    where: { email:email },
+  });
+
+
+  return existingUser;
 };

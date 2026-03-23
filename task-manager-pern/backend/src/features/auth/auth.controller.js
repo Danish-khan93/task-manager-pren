@@ -76,7 +76,6 @@ export const login = async (req, res) => {
     }
 
     const passwordCheck = await comparePass(password, alreadyUser?.password);
-    console.log(passwordCheck);
     if (!passwordCheck) {
       return res
         .status(404)

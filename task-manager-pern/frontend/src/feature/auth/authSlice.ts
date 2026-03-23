@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { registerUser } from "./authAction";
+import { registerUser, userLogin } from "./authAction";
 
 type INITIALSTATE = {
   data: null | unknown;
@@ -18,6 +18,7 @@ const userSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
+    // register user
     builder.addCase(registerUser?.pending, (state) => {
       state.loading = true;
     });
@@ -26,6 +27,18 @@ const userSlice = createSlice({
       state.data = action.payload;
     });
     builder.addCase(registerUser?.rejected, (state, action) => {
+      state.error = action.payload;
+    });
+
+    // login user
+    builder.addCase(userLogin?.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(userLogin?.fulfilled, (state, action) => {
+      state.loading = true;
+      state.data = action.payload;
+    });
+    builder.addCase(userLogin?.rejected, (state, action) => {
       state.error = action.payload;
     });
   },

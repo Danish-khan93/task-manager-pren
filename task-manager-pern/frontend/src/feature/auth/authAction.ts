@@ -26,3 +26,22 @@ export const registerUser = createAsyncThunk(
     }
   },
 );
+
+export const userLogin = createAsyncThunk(
+  "user/userLogin",
+  async (data: props, thunkAPI) => {
+    try {
+      const response = await fetchData({
+        url: data?.url,
+        method: data?.method,
+        data: data?.data,
+      });
+
+      return response;
+    } catch (error) {
+      if (isAxiosError(error) && error.response?.data?.message) {
+        return thunkAPI.rejectWithValue(error.response.data.message);
+      }
+    }
+  },
+);

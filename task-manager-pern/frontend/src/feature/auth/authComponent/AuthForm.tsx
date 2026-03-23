@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import type { FC } from "react";
 import { CustomButton, CustomInput, CustomText } from "../../../component";
 import { useForm } from "react-hook-form";
@@ -9,7 +9,7 @@ import {
 import type { SignupForm, LoginFormType } from "../types/authype";
 import { useDispatch } from "react-redux";
 import type { AppDispatch } from "../../../globalStore/store";
-import { registerUser } from "../authAction";
+import { registerUser, userLogin } from "../authAction";
 import { toast } from "react-toastify";
 
 type Props = {
@@ -18,8 +18,8 @@ type Props = {
 
 const AuthForm: FC<Props> = (props) => {
   const { type } = props;
-
-  const dispach = useDispatch<AppDispatch>();
+  const navigate = useNavigate();
+  const dispatch = useDispatch<AppDispatch>();
 
   // react hook form setup
   const { handleSubmit, register } = useForm<LoginFormType | SignupForm>({
@@ -29,7 +29,7 @@ const AuthForm: FC<Props> = (props) => {
   const onSubmit = async (values: SignupForm | LoginFormType) => {
     if (type === "signup") {
       try {
-        const res = await dispach(
+        const res = await dispatch(
           registerUser({
             url: "auth/registerUser",
             method: "post",
@@ -37,7 +37,25 @@ const AuthForm: FC<Props> = (props) => {
           }),
         ).unwrap();
         console.log(res?.message, "res?.data?.message");
+        navigate("/dashboard");
+        toast.success(res?.message);
+      } catch (error) {
+        if (typeof error === "string") {
+          toast.error(error);
+        }
+      }
+    } else {
+      try {
+        const res = await dispatch(
+          userLogin({
+            url: "auth/login",
+            method: "post",
+            data: values,
+          }),
+        ).unwrap();
+        console.log(res?.message, "res?.data?.message");
 
+        navigate("/dashboard");
         toast.success(res?.message);
       } catch (error) {
         if (typeof error === "string") {

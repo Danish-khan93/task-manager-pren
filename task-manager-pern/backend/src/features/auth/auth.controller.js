@@ -18,7 +18,10 @@ export const registerUser = async (req, res) => {
         email,
         password: passhashing,
       };
+      console.log(user);
+
       const newUser = await createUser(user);
+
       if (!newUser) {
         return res
           .status(409)
@@ -36,8 +39,8 @@ export const registerUser = async (req, res) => {
         maxAge: 60 * 60 * 1000, // one hour
       });
 
-      res.status(200).send({
-        message: "the server error in catch block ",
+      res.status(200).json({
+        message: "user create successfully",
         data: {
           email: newUser?.email,
           id: newUser?.id,

@@ -3,7 +3,6 @@ export const signUpFormValues = {
   password: "",
   firstName: "",
   lastName: "",
-  phoneNumber:""
 };
 export const loginFormValues = {
   email: "",

@@ -100,7 +100,7 @@ const WhiteLableForm = () => {
             width="w-40"
           />
           <CustomButton
-            type="button"
+            type="reset"
             handleClick={resetTheme}
             label="Reset"
             variant="text"

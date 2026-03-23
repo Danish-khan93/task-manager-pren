@@ -2,7 +2,7 @@ import type { FC } from "react";
 import { iconMap } from "../constant/icons";
 
 export type Props = {
-  type: "button" | "submit";
+  type: "button" | "submit" | "reset";
   variant: "icon" | "text" | "iconText";
   label?: string;
   icon?: keyof typeof iconMap; // allows only iconMap key names (auto-suggest & type-safe)

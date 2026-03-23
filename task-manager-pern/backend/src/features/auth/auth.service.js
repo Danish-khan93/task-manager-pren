@@ -17,9 +17,13 @@ export const generateAccessToken = (user) => {
 
 export const createUser = async (user) => {
   const { firstName, lastName, email, password } = user;
+  console.log(user,"createUser");
+  
   const existingUser = await prisma.user.findUnique({
     where: { email: user?.email },
   });
+  console.log(existingUser,"existing user");
+  
   if (!existingUser) {
     const createUser = await prisma.user.create({
       data: {

@@ -7,6 +7,7 @@ import {
   signUpFormValues,
 } from "../initalValuesAndSchema/intialValues";
 import type { SignupForm, LoginFormType } from "../types/authype";
+import { useFetch } from "../../../hook/useFetch";
 // import { phoneNumberFormat } from "../../../utiles/inputServices";
 
 type Props = {
@@ -21,8 +22,18 @@ const AuthForm: FC<Props> = (props) => {
     defaultValues: type === "login" ? loginFormValues : signUpFormValues,
   });
 
+  const { loading, response, error, fetching } = useFetch();
+
   const onSubmit = (values: SignupForm | LoginFormType) => {
     console.log(values);
+    fetching({
+      url: "auth/registerUser",
+      method: "post",
+      data: values,
+    });
+    console.log(loading);
+    console.log(response);
+    console.log(error);
   };
 
   return (

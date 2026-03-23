@@ -7,8 +7,10 @@ import {
   signUpFormValues,
 } from "../initalValuesAndSchema/intialValues";
 import type { SignupForm, LoginFormType } from "../types/authype";
-import { useFetch } from "../../../hook/useFetch";
-// import { phoneNumberFormat } from "../../../utiles/inputServices";
+import { useDispatch } from "react-redux";
+import type { AppDispatch } from "../../../globalStore/store";
+import { registerUser } from "../authAction";
+import { toast } from "react-toastify";
 
 type Props = {
   type: "signup" | "login";
@@ -17,23 +19,31 @@ type Props = {
 const AuthForm: FC<Props> = (props) => {
   const { type } = props;
 
+  const dispach = useDispatch<AppDispatch>();
+
   // react hook form setup
   const { handleSubmit, register } = useForm<LoginFormType | SignupForm>({
     defaultValues: type === "login" ? loginFormValues : signUpFormValues,
   });
 
-  const { loading, response, error, fetching } = useFetch();
+  const onSubmit = async (values: SignupForm | LoginFormType) => {
+    if (type === "signup") {
+      try {
+        const res = await dispach(
+          registerUser({
+            url: "auth/registerUser",
+            method: "post",
+            data: values,
+          }),
+        ).unwrap();
 
-  const onSubmit = (values: SignupForm | LoginFormType) => {
-    console.log(values);
-    fetching({
-      url: "auth/registerUser",
-      method: "post",
-      data: values,
-    });
-    console.log(loading);
-    console.log(response);
-    console.log(error);
+        toast.success(res?.data?.message);
+      } catch (error) {
+        if (typeof error === "string") {
+          toast.error(error);
+        }
+      }
+    }
   };
 
   return (
@@ -87,24 +97,7 @@ const AuthForm: FC<Props> = (props) => {
             label={"Password"}
             {...register("password")}
           />
-          {/* THIS IS FOR KNOWLEGDE  */}
-          {/* <CustomInput
-            type="text"
-            placeHolder="Enter your Password"
-            label={"Phone Number"}
-            {...register("phoneNumber",  {
-              onChange: (e) => {
-                const formattedValue = e?.target?.value;
-                const format = phoneNumberFormat(formattedValue,"phoneNumber");
-                console.log(format);
-                
-                e.target.value = format;
-              },
-            })}
-            // pattren="\(ddd\) ddd-dddd"
-            maxLength={14}
-            minLength={14}
-          /> */}
+
           <CustomButton
             label={type === "signup" ? "Sign up with Email" : "Log in"}
             variant="text"
@@ -139,3 +132,22 @@ const AuthForm: FC<Props> = (props) => {
 };
 
 export default AuthForm;
+
+//  {/* THIS IS FOR KNOWLEGDE  */}
+//           {/* <CustomInput
+//             type="text"
+//             placeHolder="Enter your Password"
+//             label={"Phone Number"}
+//             {...register("phoneNumber",  {
+//               onChange: (e) => {
+//                 const formattedValue = e?.target?.value;
+//                 const format = phoneNumberFormat(formattedValue,"phoneNumber");
+//                 console.log(format);
+
+//                 e.target.value = format;
+//               },
+//             })}
+//             // pattren="\(ddd\) ddd-dddd"
+//             maxLength={14}
+//             minLength={14}
+//           /> */}

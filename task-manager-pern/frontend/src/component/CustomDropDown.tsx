@@ -5,7 +5,7 @@ type Props = {
   name?: string;
   value?: string;
   onChange?: React.ChangeEventHandler<HTMLSelectElement>;
-  setName?:string
+  setName?: string;
 };
 
 const options = [
@@ -22,7 +22,7 @@ const options = [
 ];
 
 const CustomDropDown: FC<Props> = (props) => {
-  const { label, name, onChange,...rest } = props;
+  const { label, name, onChange, ...rest } = props;
 
   return (
     <div className="flex flex-col items-start m-1">
@@ -32,8 +32,6 @@ const CustomDropDown: FC<Props> = (props) => {
         name={name}
         {...rest}
         onChange={(e) => {
-          console.log(e.target?.value);
-
           onChange?.(e);
         }}
       >

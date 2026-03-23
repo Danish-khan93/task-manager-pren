@@ -6,14 +6,16 @@ type Props = {
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
   onBlur?: React.ChangeEventHandler<HTMLInputElement>;
   ref?: React.Ref<HTMLInputElement>;
-  value?:string
+  value?: string;
 };
 
 const CustomColorPicker: FC<Props> = (props) => {
-  const { label, name, onChange, onBlur, ref,value} = props;
+  const { label, name, onChange, onBlur, ref, value } = props;
   return (
     <div className="flex flex-col min-w-32">
-      <label className="form-label" htmlFor={name}>{label}</label>
+      <label className="form-label" htmlFor={name}>
+        {label}
+      </label>
       <input
         id={name}
         ref={ref}
@@ -23,7 +25,6 @@ const CustomColorPicker: FC<Props> = (props) => {
         value={value}
         type="color"
         onChange={(e) => {
-          console.log(e.target?.value);
           onChange?.(e);
         }}
       />

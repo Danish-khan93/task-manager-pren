@@ -4,6 +4,8 @@
 // Main parts: method, URL, headers, body
 // Express receives it as req object in the controller
 
+import { ErrorResponse } from "../../utils/error.js";
+import { ApiResponse } from "../../utils/response.js";
 import { generateAccessToken, passHash, createUser } from "./auth.service.js";
 
 export const registerUser = async (req, res) => {
@@ -18,37 +20,37 @@ export const registerUser = async (req, res) => {
         email,
         password: passhashing,
       };
-      console.log(user);
 
       const newUser = await createUser(user);
 
       if (!newUser) {
         return res
           .status(409)
-          .send({ message: "the user is already created " });
+          .json(
+            new ApiResponse(409, false, "the user is already created", null),
+          );
       }
 
       const accessToken = generateAccessToken({
         id: newUser?.id,
         email: newUser?.email,
       });
-      console.log(accessToken, "accessToken");
+
       res.cookie("accessToken", accessToken, {
         httpOnly: true,
         sameSite: "strict",
         maxAge: 60 * 60 * 1000, // one hour
       });
 
-      res.status(200).json({
-        message: "user create successfully",
-        data: {
+      res.status(200).json(
+        new ApiResponse(200, true, "user create successfully", {
           email: newUser?.email,
           id: newUser?.id,
           name: `${newUser?.firstName} ${newUser?.lastName}`,
-        },
-      });
+        }),
+      );
     }
   } catch (error) {
-    res.status(500).send({ message: "the server error in catch block " });
+    res.status(500).json(new ErrorResponse(500, "server error"));
   }
 };

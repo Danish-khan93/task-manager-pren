@@ -45,9 +45,15 @@ export const createUser = async (user) => {
 
 export const checkUserAlready = async (email) => {
   const existingUser = await prisma.user.findUnique({
-    where: { email:email },
+    where: { email: email },
   });
 
-
   return existingUser;
+};
+
+// check token is valif or not
+
+export const checkTokenvalid = (token) => {
+  const decoded = jwt.verify(token, config?.accessTokenSecret);
+  console.log(decoded);
 };

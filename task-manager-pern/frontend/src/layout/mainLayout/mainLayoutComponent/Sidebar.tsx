@@ -32,6 +32,14 @@ const Sidebar = () => {
 
   const [isActive, setIsActive] = useState<number>(0);
 
+// handle logout
+
+const handleLogout = ()=>{
+  
+}
+
+
+
   return (
     <div
       className="flex items-center flex-col gap-2 w-48 h-full shadow-lg py-2 px-2"
@@ -63,6 +71,19 @@ const Sidebar = () => {
             </button>
           );
         })}
+      </div>
+      <div>
+        <button
+          onClick={() => {
+            navigate("/");
+            handleLogout()
+          }}
+          type="button"
+          className={`flex justify-start items-center gap-3 cursor-pointer py-2 px-3 w-full rounded-lg my-2 hover:backdrop-opacity-20`}
+        >
+          {/* {iconMap[value?.icon]} */}
+          Logout
+        </button>
       </div>
     </div>
   );

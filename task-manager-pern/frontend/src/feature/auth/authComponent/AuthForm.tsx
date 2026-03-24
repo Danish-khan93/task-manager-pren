@@ -37,8 +37,10 @@ const AuthForm: FC<Props> = (props) => {
           }),
         ).unwrap();
         console.log(res?.message, "res?.data?.message");
-        navigate("/dashboard");
-        toast.success(res?.message);
+        if (res.success) {
+          navigate("/dashboard");
+          toast.success(res?.message);
+        }
       } catch (error) {
         if (typeof error === "string") {
           toast.error(error);
@@ -54,9 +56,10 @@ const AuthForm: FC<Props> = (props) => {
           }),
         ).unwrap();
         console.log(res?.message, "res?.data?.message");
-
-        navigate("/dashboard");
-        toast.success(res?.message);
+        if (res.success) {
+          navigate("/dashboard");
+          toast.success(res?.message);
+        }
       } catch (error) {
         if (typeof error === "string") {
           toast.error(error);

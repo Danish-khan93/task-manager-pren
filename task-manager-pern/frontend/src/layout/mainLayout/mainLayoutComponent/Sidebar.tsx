@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import logo from "../../../assets/logo.png";
 import { iconMap } from "../../../constant/icons";
 import { useState } from "react";
+import { fetchData } from "../../../utiles/fetch";
 const sideBarMenu = [
   {
     icon: "dashboard",
@@ -32,23 +33,27 @@ const Sidebar = () => {
 
   const [isActive, setIsActive] = useState<number>(0);
 
-// handle logout
+  // handle logout
 
-const handleLogout = ()=>{
-  
-}
-
-
+  const handleLogout = async () => {
+    try {
+      const logoutAPi = await fetchData({ url: "auth/logout", method: "post" });
+      navigate("/");
+      console.log(logoutAPi);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div
-      className="flex items-center flex-col gap-2 w-48 h-full shadow-lg py-2 px-2"
+      className="flex items-center flex-col justify-between gap-2 w-48 h-full shadow-lg py-2 px-2"
       style={{ backgroundColor: "var(--color-bg)" }}
     >
       <div className="h-15 w-full flex items-center justify-center">
         <img src={logo} className="w-full h-full object-contain" />
       </div>
-      <div>
+      <div className="flex flex-col flex-1">
         {sideBarMenu?.map((value, index) => {
           return (
             <button
@@ -75,8 +80,7 @@ const handleLogout = ()=>{
       <div>
         <button
           onClick={() => {
-            navigate("/");
-            handleLogout()
+            handleLogout();
           }}
           type="button"
           className={`flex justify-start items-center gap-3 cursor-pointer py-2 px-3 w-full rounded-lg my-2 hover:backdrop-opacity-20`}

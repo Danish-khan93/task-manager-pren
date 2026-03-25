@@ -42,7 +42,7 @@ export const registerUser = async (req, res) => {
 
       res.cookie("accessToken", accessToken, {
         httpOnly: true,
-        sameSite: "strict",
+        sameSite: "lax",
         maxAge: 60 * 60 * 1000, // one hour
       });
 
@@ -108,7 +108,19 @@ export const login = async (req, res) => {
 // logout
 
 export const logout = (req, res) => {
-  const token = req.cookies.accessToken;
+  try {
+    res.cookie("accessToken", "", {
+      httpOnly: true,
+      sameSite: "lax",
+      maxAge: 0,
+      secure: false,
+      path:"/"
+    });
 
-  console.log(token);
+    res
+      .status(200)
+      .json(new ApiResponse(200, true, "User Logout successfully", null));
+  } catch (error) {
+    res.status(500).json(new ErrorResponse(500, "Internal server error"));
+  }
 };

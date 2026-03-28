@@ -17,8 +17,12 @@ export const comparePass = async (password, hashPassword) => {
 };
 
 export const generateAccessToken = (user) => {
-  const accessToken = jwt.sign(user, config?.accessTokenSecret);
+  const accessToken = jwt.sign(user, config?.accessTokenSecret,{expiresIn:"15mins"});
   return accessToken;
+};
+export const generateRefreshToken = (user) => {
+  const refreshToken = jwt.sign(user?.id, config?.refreshTokenSecret,{expiresIn:"5days"});
+  return refreshToken;
 };
 
 export const createUser = async (user) => {

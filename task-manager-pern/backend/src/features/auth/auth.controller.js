@@ -13,7 +13,7 @@ import {
   comparePass,
   checkUserAlready,
 } from "./auth.service.js";
-
+import { options } from "../../constant/cookiesOption.js";
 export const registerUser = async (req, res) => {
   try {
     const { firstName, lastName, email, password } = req.body;
@@ -40,19 +40,16 @@ export const registerUser = async (req, res) => {
         email: newUser?.email,
       });
 
-      res.cookie("accessToken", accessToken, {
-        httpOnly: true,
-        sameSite: "lax",
-        maxAge: 60 * 60 * 1000, // one hour
-      });
-
-      res.status(201).json(
-        new ApiResponse(201, true, "User registered successfully", {
-          email: newUser?.email,
-          id: newUser?.id,
-          name: `${newUser?.firstName} ${newUser?.lastName}`,
-        }),
-      );
+      return res
+        .cookie("accessToken", accessToken, options)
+        .status(201)
+        .json(
+          new ApiResponse(201, true, "User registered successfully", {
+            email: newUser?.email,
+            id: newUser?.id,
+            name: `${newUser?.firstName} ${newUser?.lastName}`,
+          }),
+        );
     }
   } catch (error) {
     res.status(500).json(new ErrorResponse(500, "Internal server error"));
@@ -87,19 +84,16 @@ export const login = async (req, res) => {
       email: alreadyUser?.email,
     });
 
-    res.cookie("accessToken", accessToken, {
-      httpOnly: true,
-      sameSite: "strict",
-      maxAge: 60 * 60 * 1000, // one hour
-    });
-
-    res.status(200).json(
-      new ApiResponse(200, true, "Login successful", {
-        email: alreadyUser?.email,
-        id: alreadyUser?.id,
-        name: `${alreadyUser?.firstName} ${alreadyUser?.lastName}`,
-      }),
-    );
+    return res
+      .cookie("accessToken", accessToken, options)
+      .status(200)
+      .json(
+        new ApiResponse(200, true, "Login successful", {
+          email: alreadyUser?.email,
+          id: alreadyUser?.id,
+          name: `${alreadyUser?.firstName} ${alreadyUser?.lastName}`,
+        }),
+      );
   } catch (error) {
     res.status(500).json(new ErrorResponse(500, "Internal server error"));
   }
@@ -109,15 +103,8 @@ export const login = async (req, res) => {
 
 export const logout = (req, res) => {
   try {
-    res.cookie("accessToken", "", {
-      httpOnly: true,
-      sameSite: "lax",
-      maxAge: 0,
-      secure: false,
-      path:"/"
-    });
-
-    res
+    return res
+      .cookie("accessToken", "", options)
       .status(200)
       .json(new ApiResponse(200, true, "User Logout successfully", null));
   } catch (error) {

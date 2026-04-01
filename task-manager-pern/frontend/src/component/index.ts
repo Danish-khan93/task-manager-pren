@@ -6,6 +6,9 @@ import CustomText from "./CustomText";
 import CustomModal from "./CustomModal";
 import CustomDropDown from "./CustomDropDown";
 import CustomTabs from "./CustomTabs";
+import  CustomSearch from "./CustomSearch";
+import CustomPopover from "./CustomPopover"
+
 export {
   CustomText,
   CustomButton,
@@ -15,4 +18,6 @@ export {
   CustomModal,
   CustomDropDown,
   CustomTabs,
+  CustomSearch,
+  CustomPopover,
 };

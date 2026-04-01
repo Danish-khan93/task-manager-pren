@@ -23,7 +23,7 @@ const CustomButton: FC<Props> = (props) => {
   } = props;
 
   const styling = {
-    icon: "w-[30px] h-[30px] flex justify-center items-center",
+    icon: "icon-button",
     text: "text-button",
     iconText: "text-button flex items-center",
   };
@@ -35,7 +35,7 @@ const CustomButton: FC<Props> = (props) => {
       onClick={handleClick}
     >
       <span
-        className={`${variant === "iconText" ? "flex-1 flex justify-center" : ""}`}
+        className={`${variant === "iconText" ? "flex-1 flex justify-center " : ""}`}
       >
         {icon && iconMap[icon]}
       </span>

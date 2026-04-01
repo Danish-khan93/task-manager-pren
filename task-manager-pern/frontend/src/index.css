@@ -47,3 +47,13 @@
   background-color: var(--color-buttonBg);
   color: var(--color-buttonColor);
 }
+
+.field-error{
+  @apply border-l-4 border-red-500;
+}
+
+.icon-button{
+  @apply w-10 h-10 flex justify-center items-center rounded-full cursor-pointer text-2xl;
+  background-color: var(--color-buttonBg);
+  color: var(--color-buttonColor);
+}

@@ -8,6 +8,8 @@ import { IoSettingsOutline } from "react-icons/io5";
 import { MdOutlineDashboard } from "react-icons/md";
 import { MdWorkspacesOutline } from "react-icons/md";
 import { MdOutlineCancel } from "react-icons/md";
+import { IoMdNotificationsOutline } from "react-icons/io";
+
 export const iconMap = {
   plus: <FaPlus  />,
   edit: <MdEdit  />,
@@ -19,4 +21,5 @@ export const iconMap = {
   dashboard: <MdOutlineDashboard  />,
   workSpace: <MdWorkspacesOutline  />,
   cancel: <MdOutlineCancel  />,
+  notification: <IoMdNotificationsOutline  />
 };

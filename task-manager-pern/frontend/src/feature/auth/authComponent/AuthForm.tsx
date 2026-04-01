@@ -5,12 +5,14 @@ import { useForm } from "react-hook-form";
 import {
   loginFormValues,
   signUpFormValues,
+  singupSchema,
 } from "../initalValuesAndSchema/intialValues";
 import type { SignupForm, LoginFormType } from "../types/authype";
 import { useDispatch } from "react-redux";
 import type { AppDispatch } from "../../../globalStore/store";
 import { registerUser, userLogin } from "../authAction";
 import { toast } from "react-toastify";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 type Props = {
   type: "signup" | "login";
@@ -22,8 +24,13 @@ const AuthForm: FC<Props> = (props) => {
   const dispatch = useDispatch<AppDispatch>();
 
   // react hook form setup
-  const { handleSubmit, register } = useForm<LoginFormType | SignupForm>({
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+  } = useForm<LoginFormType | SignupForm>({
     defaultValues: type === "login" ? loginFormValues : signUpFormValues,
+    resolver: yupResolver(singupSchema),
   });
 
   const onSubmit = async (values: SignupForm | LoginFormType) => {
@@ -112,12 +119,14 @@ const AuthForm: FC<Props> = (props) => {
             placeHolder="Enter your Email"
             label={"Email"}
             {...register("email")}
+            error={errors?.email?.message}
           />
           <CustomInput
             type="password"
             placeHolder="Enter your Password"
             label={"Password"}
             {...register("password")}
+            error={errors?.password?.message}
           />
 
           <CustomButton

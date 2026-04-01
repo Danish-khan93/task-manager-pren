@@ -22,6 +22,7 @@ type Props = {
   onBlur?: React.ChangeEventHandler<HTMLInputElement>;
   ref?: React.Ref<HTMLInputElement>;
   pattren?: string;
+  error?: string;
 };
 
 const CustomInput: FC<Props> = (props) => {
@@ -40,6 +41,7 @@ const CustomInput: FC<Props> = (props) => {
     onBlur,
     pattren,
     ref,
+    error,
   } = props;
 
   const [showPass, setShowPass] = useState<boolean>(false);
@@ -51,7 +53,7 @@ const CustomInput: FC<Props> = (props) => {
         {label}
       </label>
       <span
-        className={`flex items-center justify-between form-input ${activeInput ? "shadow-md" : ""}`}
+        className={`flex items-center justify-between form-input ${activeInput ? "shadow-md" : ""} ${ error !== undefined ? "field-error" : ""}`}
       >
         <input
           pattern={pattren}
@@ -95,6 +97,7 @@ const CustomInput: FC<Props> = (props) => {
           </span>
         )}
       </span>
+      <p className="text-sm text-red-600">{error}</p>
     </div>
   );
 };

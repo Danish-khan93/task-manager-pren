@@ -12,6 +12,8 @@ import {
   createUser,
   comparePass,
   checkUserAlready,
+  saveRefreshToken,
+  generateRefreshToken,
 } from "./auth.service.js";
 import { options } from "../../constant/cookiesOption.js";
 export const registerUser = async (req, res) => {
@@ -19,6 +21,7 @@ export const registerUser = async (req, res) => {
     const { firstName, lastName, email, password } = req.body;
     // here now pass hash service call
     const passhashing = await passHash(password);
+
     if (passhashing) {
       const user = {
         firstName,
@@ -40,8 +43,23 @@ export const registerUser = async (req, res) => {
         email: newUser?.email,
       });
 
+      const refreshToken = generateRefreshToken({
+        id: newUser?.id,
+      });
+
+      const saveRefToken = await saveRefreshToken(newUser?.id, refreshToken);
+      console.log(saveRefToken, "saveRefToken");
+
+      if (!saveRefToken) {
+        return res
+          .status(500)
+          .json(
+            new ApiResponse(500, false, "Failed to save refresh token", null),
+          );
+      }
       return res
         .cookie("accessToken", accessToken, options)
+        .cookie("refreshToken", refreshToken, options)
         .status(201)
         .json(
           new ApiResponse(201, true, "User registered successfully", {

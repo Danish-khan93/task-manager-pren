@@ -17,12 +17,34 @@ export const comparePass = async (password, hashPassword) => {
 };
 
 export const generateAccessToken = (user) => {
-  const accessToken = jwt.sign(user, config?.accessTokenSecret,{expiresIn:"15mins"});
+  const accessToken = jwt.sign(user, config?.accessTokenSecret, {
+    expiresIn: "15mins",
+  });
   return accessToken;
 };
 export const generateRefreshToken = (user) => {
-  const refreshToken = jwt.sign(user?.id, config?.refreshTokenSecret,{expiresIn:"5days"});
+  const refreshToken = jwt.sign(user, config?.refreshTokenSecret, {
+    expiresIn: "5days",
+  });
+
   return refreshToken;
+};
+
+// save refresh token in database
+
+export const saveRefreshToken = async (userId, refreshToken) => {
+  console.log(userId);
+  console.log(refreshToken);
+
+  try {
+    const user = await prisma.user.update({
+      where: { id: userId },
+      data: { refreshToken: refreshToken },
+    });
+    return user;
+  } catch (error) {
+    throw new Error("Failed to save refresh token");
+  }
 };
 
 export const createUser = async (user) => {
@@ -55,7 +77,7 @@ export const checkUserAlready = async (email) => {
   return existingUser;
 };
 
-// check token is valif or not
+// check token is valid or not
 
 export const checkTokenvalid = async (token) => {
   try {

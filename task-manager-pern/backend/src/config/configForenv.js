@@ -6,7 +6,7 @@ const config = {
   dataBaseUrl: process.env.DATABASE_URL,
   accessTokenSecret: process.env.ACCESS_TOKEN_SECRET,
   refreshTokenSecret: process.env.REFRESH_TOKEN_SECRET,
-  // port: process.env.PORT,
+  
 };
 
 export { config };

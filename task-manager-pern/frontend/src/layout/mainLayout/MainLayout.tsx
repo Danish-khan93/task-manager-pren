@@ -18,7 +18,7 @@ const MainLayout: FC<Props> = (props) => {
         <div className="h-15 sticky top-0">
           <Topbar />
         </div>
-        <div className="mx-4">
+        <div className="px-4 py-2">
           {children}
 
           <Outlet />

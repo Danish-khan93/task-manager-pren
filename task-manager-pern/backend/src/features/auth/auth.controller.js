@@ -14,8 +14,10 @@ import {
   checkUserAlready,
   saveRefreshToken,
   generateRefreshToken,
+  checkTokenvalid,
 } from "./auth.service.js";
 import { options } from "../../constant/cookiesOption.js";
+import { prisma } from "../../prisma.js";
 export const registerUser = async (req, res) => {
   try {
     const { firstName, lastName, email, password } = req.body;
@@ -48,7 +50,6 @@ export const registerUser = async (req, res) => {
       });
 
       const saveRefToken = await saveRefreshToken(newUser?.id, refreshToken);
-      console.log(saveRefToken, "saveRefToken");
 
       if (!saveRefToken) {
         return res
@@ -102,8 +103,23 @@ export const login = async (req, res) => {
       email: alreadyUser?.email,
     });
 
+    const refreshToken = generateRefreshToken({
+      id: alreadyUser?.id,
+    });
+
+    const saveRefToken = await saveRefreshToken(alreadyUser?.id, refreshToken);
+
+    if (!saveRefToken) {
+      return res
+        .status(500)
+        .json(
+          new ApiResponse(500, false, "Failed to save refresh token", null),
+        );
+    }
+
     return res
       .cookie("accessToken", accessToken, options)
+      .cookie("refreshToken", refreshToken, options)
       .status(200)
       .json(
         new ApiResponse(200, true, "Login successful", {
@@ -119,10 +135,35 @@ export const login = async (req, res) => {
 
 // logout
 
-export const logout = (req, res) => {
+export const logout = async (req, res) => {
   try {
+    const token = req.cookies.refreshToken;
+    console.log(token);
+
+    if (!token) {
+      return res
+        .status(400)
+        .json(new ApiResponse(400, false, "No token provided", null));
+    }
+    const checkToken = await checkTokenvalid(token, "refreshTokenSecret");
+    console.log(checkToken, "checkToken");
+
+    if (!checkToken) {
+      return res
+        .status(400)
+        .json(new ApiResponse(400, false, "Invalid token", null));
+    }
+
+    const deletRefreshToken = await prisma.user.update({
+      where: { id: checkToken?.id },
+      data: { refreshToken: null },
+    });
+
+    console.log(deletRefreshToken);
+
     return res
       .cookie("accessToken", "", options)
+      .cookie("refreshToken", "", options)
       .status(200)
       .json(new ApiResponse(200, true, "User Logout successfully", null));
   } catch (error) {

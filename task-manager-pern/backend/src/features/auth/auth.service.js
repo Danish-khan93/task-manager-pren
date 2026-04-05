@@ -5,6 +5,7 @@ import { compare, hash } from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { config } from "../../config/configForenv.js";
 import { prisma } from "../../prisma.js";
+import { log } from "console";
 
 export const passHash = async (password) => {
   const hashing = await hash(password, 8);
@@ -79,13 +80,14 @@ export const checkUserAlready = async (email) => {
 
 // check token is valid or not
 
-export const checkTokenvalid = async (token) => {
+export const checkTokenvalid = async (token,str) => {
   try {
-    const decoded = jwt.verify(token, config?.accessTokenSecret);
+    const decoded = jwt.verify(token, config[str]);
+    console.log(decoded, "decoded");
     const findUser = await prisma.user.findUnique({
       where: { id: decoded?.id },
     });
-
+    console.log(findUser, "findUser");
     return decoded;
   } catch (error) {
     throw error;

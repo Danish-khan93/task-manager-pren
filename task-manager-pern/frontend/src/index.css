@@ -43,7 +43,7 @@
 
 
 .text-button{
-  @apply rounded-full font-medium my-1 cursor-pointer py-1 px-4 whitespace-nowrap;
+  @apply rounded-full font-medium my-1 cursor-pointer py-1 px-4 whitespace-nowrap min-w-48;
   background-color: var(--color-buttonBg);
   color: var(--color-buttonColor);
 }

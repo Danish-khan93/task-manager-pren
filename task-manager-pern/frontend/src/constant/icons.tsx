@@ -9,17 +9,21 @@ import { MdOutlineDashboard } from "react-icons/md";
 import { MdWorkspacesOutline } from "react-icons/md";
 import { MdOutlineCancel } from "react-icons/md";
 import { IoMdNotificationsOutline } from "react-icons/io";
+import { MdOutlineInsertComment } from "react-icons/md";
+import { RiAttachment2 } from "react-icons/ri";
 
 export const iconMap = {
-  plus: <FaPlus  />,
-  edit: <MdEdit  />,
-  delete: <MdDelete  />,
-  hidePass: <FaEye  />,
-  showPass: <FaEyeSlash  />,
-  google: <FaGoogle  />,
-  setting: <IoSettingsOutline  />,
-  dashboard: <MdOutlineDashboard  />,
-  workSpace: <MdWorkspacesOutline  />,
-  cancel: <MdOutlineCancel  />,
-  notification: <IoMdNotificationsOutline  />
+  plus: <FaPlus />,
+  edit: <MdEdit />,
+  delete: <MdDelete />,
+  hidePass: <FaEye />,
+  showPass: <FaEyeSlash />,
+  google: <FaGoogle />,
+  setting: <IoSettingsOutline />,
+  dashboard: <MdOutlineDashboard />,
+  workSpace: <MdWorkspacesOutline />,
+  cancel: <MdOutlineCancel />,
+  notification: <IoMdNotificationsOutline />,
+  comment: <MdOutlineInsertComment />,
+  attachment: <RiAttachment2 />,
 };

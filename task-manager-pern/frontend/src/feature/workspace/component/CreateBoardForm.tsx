@@ -6,25 +6,30 @@ import {
   CustomText,
 } from "../../../component";
 import type { FC } from "react";
+import { useDispatch } from "react-redux";
+import type { AppDispatch } from "../../../globalStore/store";
+import { createBoard } from "../workspaceSlice";
 
-type formType = { bgColor: string; boardName: string };
+type formType = { bgColor?: string; boardName: string; bgImage?: string };
 
 type Props = {
-    setOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
-}
+  setOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
+};
 
-
-const CreateBoardForm:FC<Props> = ({setOpenModal}) => {
+const CreateBoardForm: FC<Props> = ({ setOpenModal }) => {
+  const dispatch = useDispatch<AppDispatch>();
   const { handleSubmit, register } = useForm<formType>({
     defaultValues: {
       bgColor: "",
       boardName: "",
+      bgImage: "",
     },
   });
 
   const onSubmit = (values: formType) => {
     console.log(values);
-    setOpenModal(false)
+    dispatch(createBoard(values));
+    setOpenModal(false);
   };
 
   return (

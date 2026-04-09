@@ -83,11 +83,11 @@ export const checkUserAlready = async (email) => {
 export const checkTokenvalid = async (token,str) => {
   try {
     const decoded = jwt.verify(token, config[str]);
-    console.log(decoded, "decoded");
+    // console.log(decoded, "decoded");
     const findUser = await prisma.user.findUnique({
       where: { id: decoded?.id },
     });
-    console.log(findUser, "findUser");
+    // console.log(findUser, "findUser");
     return decoded;
   } catch (error) {
     throw error;

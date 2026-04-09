@@ -2,12 +2,11 @@
 import List from "../component/List";
 import Header from "../component/Header";
 
-const data = {
-  id: 1,
-  name: "Marketing",
-  color: "#FF5733",
-  memberList: [],
-};
+// const data = {
+//   id: 1,
+//   name: "Marketing",
+//   color: "#FF5733",
+// };
 
 const Board = () => {
   // const params = useParams();

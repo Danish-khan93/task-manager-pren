@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { iconMap } from "../../../constant/icons";
 
 const AddTask = () => {
@@ -7,18 +7,18 @@ const AddTask = () => {
   const tempRef = useRef<HTMLDivElement>(null);
   console.log(tempRef);
 
-  useEffect(() => {
-    const handleClick = (event: MouseEvent) => {
-      console.log(event, "User clicked somewhere on page");
-      setHideAndShow(false);
-    };
+  //   useEffect(() => {
+  //     const handleClick = (event: MouseEvent) => {
+  //       console.log(event, "User clicked somewhere on page");
+  //       setHideAndShow(false);
+  //     };
 
-    document.addEventListener("mousedown", handleClick);
+  //     document.addEventListener("mousedown", handleClick);
 
-    return () => {
-      document.removeEventListener("mousedown", handleClick);
-    };
-  }, []);
+  //     return () => {
+  //       document.removeEventListener("mousedown", handleClick);
+  //     };
+  //   }, []);
 
   return (
     <div ref={tempRef}>

@@ -138,7 +138,7 @@ export const login = async (req, res) => {
 export const logout = async (req, res) => {
   try {
     const token = req.cookies.refreshToken;
-    console.log(token);
+    // console.log(token);
 
     if (!token) {
       return res
@@ -146,7 +146,7 @@ export const logout = async (req, res) => {
         .json(new ApiResponse(400, false, "No token provided", null));
     }
     const checkToken = await checkTokenvalid(token, "refreshTokenSecret");
-    console.log(checkToken, "checkToken");
+    // console.log(checkToken, "checkToken");
 
     if (!checkToken) {
       return res
@@ -159,7 +159,7 @@ export const logout = async (req, res) => {
       data: { refreshToken: null },
     });
 
-    console.log(deletRefreshToken);
+    // console.log(deletRefreshToken);
 
     return res
       .cookie("accessToken", "", options)

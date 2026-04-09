@@ -15,10 +15,23 @@ datasource db {
 }
 
 model User {
-  id           Int    @id @default(autoincrement())
-  email        String @unique
+  id           Int     @id @default(autoincrement())
+  email        String  @unique
   firstName    String
   lastName     String
   password     String
   refreshToken String?
+
+
+  board Board[]
+}
+
+model Board {
+  id     Int    @id @default(autoincrement())
+  title  String
+  color  String
+
+  
+  userId Int
+ user   User @relation(fields: [userId], references: [id]) 
 }

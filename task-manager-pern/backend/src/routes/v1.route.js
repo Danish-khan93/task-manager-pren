@@ -6,11 +6,12 @@
 // callback is the function that have req and res paremeter
 import express from "express";
 import authRoutes from "../features/auth/auth.route.js";
-
+import boardRoutes from "../features/board/board.routes.js";
 const router = express.Router();
 
 
 
 router.use("/auth",authRoutes)
+router.use("/boards",boardRoutes)
 
 export default router

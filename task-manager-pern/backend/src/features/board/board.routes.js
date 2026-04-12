@@ -9,8 +9,8 @@ import { authGuard } from "../../middleware/auth.middleware.js";
 
 const router = express.Router();
 
-router.get("getAllBoards", getAllboards);
-router.get("getBoardById", getBoardById);
+router.get("/getAllBoards",authGuard, getAllboards);
+router.get("getBoardById",authGuard, getBoardById);
 router.post("/createBoard",authGuard, createBoard);
 router.put("updateBoard",authGuard, updateBoard);
 

@@ -24,6 +24,9 @@ export const getBoardById = (req, res) => {
   try {
   } catch (error) {}
 };
+
+// create board
+
 export const createBoard = async (req, res) => {
   try {
     const { title, color } = req.body;
@@ -36,10 +39,44 @@ export const createBoard = async (req, res) => {
         userId: user?.id,
       },
     });
+
+    console.log(createBoard);
+    if (!createBoard) {
+      return res
+        .status(500)
+        .json(new ErrorResponse(500, "Failed to create board"));
+    }
+
+    const basicLists = [
+      { title: "Todo", cards: [] },
+      { title: "In Progress", cards: [] },
+      { title: "Done", cards: [] },
+    ];
+
+    for (let list of basicLists) {
+      await prisma.list.create({
+        data: {
+          title: list.title,
+          boardId: createBoard?.id,
+        },
+      });
+    }
+
+    const getBoardDetail = await prisma.board.findUnique({
+      where: { id: createBoard?.id },
+      include: { list: true },
+    });
+    console.log(getBoardDetail);
+
     return res
       .status(201)
       .json(
-        new ApiResponse(201, true, "Board created successfully", createBoard),
+        new ApiResponse(
+          201,
+          true,
+          "Board created successfully",
+          getBoardDetail,
+        ),
       );
   } catch (error) {
     res.status(500).json(new ErrorResponse(500, "Internal server error"));
